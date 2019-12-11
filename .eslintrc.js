@@ -18,7 +18,12 @@ module.exports = {
     "rules": {
         "linebreak-style": 0,
         "no-unused-expressions": 0,
-        "chai-friendly/no-unused-expressions": 2
+        "chai-friendly/no-unused-expressions": 2,
+        "no-plusplus": 'off',
+        "vars-on-top": 'off',
+        "operator-assignment": ["error", "never"],
+        "no-param-reassign": ["error", { "props": false }],
+       
     },
     "plugins": [
         "chai-friendly"

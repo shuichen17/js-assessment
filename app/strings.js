@@ -10,7 +10,27 @@ stringsAnswers = {
    * @returns {String} A string with no more than amount number of repeated letters.
    */
   reduceString: function reduceString(str, amount) {
-
+    const temp = [];
+    let ans = '';
+    const count = [];
+    let num = 1;
+    for (let i = 1; i <= str.length; i++) {
+      if (str[i - 1] !== str[i]) {
+        temp.push(str[i - 1]);
+        count.push(num);
+        num = 1;
+      } else {
+        num++;
+      }
+    }
+    for (let i = 0; i < temp.length; i++) {
+      if (count[i] < amount) {
+        ans = ans + temp[i].repeat(count[i]);
+      } else {
+        ans = ans + temp[i].repeat(amount);
+      }
+    }
+    return ans;
   },
 
   /**
@@ -22,6 +42,16 @@ stringsAnswers = {
    * @returns {String} The original string of text str reversed.
    */
   reverseString: function reverseString(str) {
-
+    let left = 0;
+    let right = str.length - 1;
+    const arr = str.split('');
+    while (left < right) {
+      const temp = arr[left];
+      arr[left] = arr[right];
+      arr[right] = temp;
+      left++;
+      right--;
+    }
+    return arr.join('');
   },
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 arraysAnswers = {
   /**
    * Find the 0 based index of item in arr.
@@ -8,6 +9,12 @@ arraysAnswers = {
    */
   indexOf: function indexOf(arr, item) {
     // Implement a function, that returns the 0 based index of an element in an array.
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === item) {
+        return i;
+      }
+    }
+    return -1;
   },
 
   /**
@@ -17,7 +24,7 @@ arraysAnswers = {
    * @returns {Number} The numerical sum of all items in arr.
    */
   sum: function sum(arr) {
-
+    return arr.reduce((a, b) => a + b);
   },
 
   /**
@@ -28,7 +35,22 @@ arraysAnswers = {
    * @returns {Number[]} A new array containing all numbers from arr except item.
    */
   remove: function remove(arr, item) {
-
+    let count = 0;
+    let j = 0;
+    let n = arr.length;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] !== item) {
+        arr[j] = arr[i];
+        j++;
+        count++;
+      }
+    }
+    n = n - count;
+    while (n > 0) {
+      arr.pop();
+      n--;
+    }
+    return arr;
   },
 
   /**
@@ -39,7 +61,8 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with item appended.
    */
   append: function append(arr, item) {
-
+    arr.push(item);
+    return arr;
   },
 
   /**
@@ -49,7 +72,8 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the last element removed..
    */
   truncate: function truncate(arr) {
-
+    arr.pop();
+    return arr;
   },
 
   /**
@@ -60,7 +84,8 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the first element item added
    */
   prepend: function prepend(arr, item) {
-
+    arr.unshift(item);
+    return arr;
   },
 
 
@@ -71,7 +96,8 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the first element item removed.
    */
   curtail: function curtail(arr) {
-
+    arr.shift();
+    return arr;
   },
 
   /**
@@ -82,7 +108,17 @@ arraysAnswers = {
    * @returns {Number[]} A new array, with elements from arr1 and arr2 in that order.
    */
   concat: function concat(arr1, arr2) {
-
+    const newArr = [];
+    let k = 0;
+    for (let i = 0; i < arr1.length; i++) {
+      newArr[k] = arr1[i];
+      k++;
+    }
+    for (let j = 0; j < arr2.length; j++) {
+      newArr[k] = arr2[j];
+      k++;
+    }
+    return newArr;
   },
 
   /**
@@ -94,7 +130,8 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the number item inserted at position index.
    */
   insert: function insert(arr, item, index) {
-
+    arr.splice(index, 0, item);
+    return arr;
   },
 
   /**
@@ -105,7 +142,13 @@ arraysAnswers = {
    * @returns {Number} The count of the number of times the number item appeared in arr.
    */
   count: function count(arr, item) {
-
+    let counts = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === item) {
+        counts++;
+      }
+    }
+    return counts;
   },
 
   /**
@@ -115,7 +158,21 @@ arraysAnswers = {
    * @returns {Number[]} An array of numbers that appear in arr more than once.
    */
   duplicates: function duplicates(arr) {
-
+    const map = {};
+    const res = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (map[arr[i]] === undefined) {
+        map[arr[i]] = 1;
+      } else {
+        map[arr[i]]++;
+      }
+    }
+    for (let key in map) {
+      if (map[key] !== 1) {
+        res.push(Number(key));
+      }
+    }
+    return res;
   },
 
   /**
@@ -125,7 +182,9 @@ arraysAnswers = {
    * @returns {Number[]} A new array of numbers that contains the elements of arr squared.
    */
   square: function square(arr) {
-
+    const ans = [];
+    arr.forEach(x => ans.push(x * x));
+    return ans;
   },
 
   /**
@@ -136,6 +195,12 @@ arraysAnswers = {
    * @returns {Number[]} A new array of numbers which represent the indices of target in arr.
    */
   findAllOccurrences: function findAllOccurrences(arr, target) {
-
+    const indices = [];
+    arr.forEach((x, index) => {
+      if (x === target) {
+        indices.push(index);
+      }
+    });
+    return indices;
   },
 };
